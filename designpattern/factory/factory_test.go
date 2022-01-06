@@ -5,34 +5,34 @@ import (
 	"testing"
 )
 
-func TestNewConfigParser(t *testing.T) {
+func TestNewConfigParserFactory(t *testing.T) {
 	type args struct {
-		typ string
+		t string
 	}
 	tests := []struct {
 		name string
 		args args
-		want ConfigParser
+		want ConfigParserFactory
 	}{
 		{
-			name: "yaml",
+			name: "yaml factory",
 			args: args{
-				typ: "yaml",
+				t: "yaml",
 			},
-			want: &YamlConfigParser{},
+			want: &YamlConfigParserFactory{},
 		},
 		{
-			name: "json",
+			name: "json factory",
 			args: args{
-				typ: "json",
+				t: "json",
 			},
-			want: &JsonConfigParser{},
+			want: &JSONConfigParserFactory{},
 		},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			if got := NewConfigParser(tt.args.typ); !reflect.DeepEqual(got, tt.want) {
-				t.Errorf("NewConfigParser() = %v, want %v", got, tt.want)
+			if got := NewConfigParserFactory(tt.args.t); !reflect.DeepEqual(got, tt.want) {
+				t.Errorf("NewConfigParserFactory() = %v, want %v", got, tt.want)
 			}
 		})
 	}

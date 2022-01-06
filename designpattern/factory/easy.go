@@ -8,10 +8,10 @@ type ConfigParser interface {
 	Parse(data []byte)
 }
 
-type JsonConfigParser struct {
+type JSONConfigParser struct {
 }
 
-func (j *JsonConfigParser) Parse(data []byte) {
+func (j *JSONConfigParser) Parse(data []byte) {
 	fmt.Println("JsonConfigParser: ", string(data))
 }
 
@@ -29,7 +29,7 @@ func NewConfigParser(typ string) ConfigParser {
 	case "yaml":
 		return &YamlConfigParser{}
 	case "json":
-		return &JsonConfigParser{}
+		return &JSONConfigParser{}
 	}
 	return nil
 }
